@@ -40,6 +40,8 @@ class SettingsScreen extends StatelessWidget {
                       "Theme",
                       style: TextStyle(fontFamily: "Montserrat", fontSize: 15),
                     ),
+
+                    //Drop down
                     Obx(() => Container(
                           width: screenWidth * 0.4,
                           decoration: BoxDecoration(

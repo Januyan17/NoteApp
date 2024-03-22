@@ -21,6 +21,7 @@ class AddNoteScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //Responsive Length Declaration
     double screenHeight = ScreenUtil.screenHeight(context);
     double screenWidth = ScreenUtil.screenWidth(context);
 
@@ -41,6 +42,7 @@ class AddNoteScreen extends StatelessWidget {
               key: _formKey,
               child: Column(
                 children: [
+                  //Custom Text Form Field
                   CustomTextFormField(
                     controller: titleController,
                     labelText: 'Title',
@@ -61,6 +63,7 @@ class AddNoteScreen extends StatelessWidget {
                       width: screenWidth * 0.8,
                       child: ElevatedButton(
                         onPressed: () {
+                          //Validator
                           if (_formKey.currentState!.validate()) {
                             postData(
                                 titleController.text, messageController.text);
@@ -73,7 +76,7 @@ class AddNoteScreen extends StatelessWidget {
                         },
                         style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all<Color>(
-                              HexColor("#5FFFD8")), // Change button color here
+                              HexColor("#5FFFD8")),
                         ),
                         child: Text(
                           'Create',

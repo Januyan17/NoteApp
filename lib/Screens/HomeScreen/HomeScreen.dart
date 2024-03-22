@@ -19,6 +19,8 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //Responsive Length Declaration
+
     double screenHeight = ScreenUtil.screenHeight(context);
     double screenWidth = ScreenUtil.screenWidth(context);
 
@@ -48,6 +50,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: screenHeight * 0.02),
+                //Search Bar
                 Row(
                   children: [
                     Expanded(
@@ -90,6 +93,7 @@ class HomeScreen extends StatelessWidget {
                       ),
                     )),
                     SizedBox(width: screenWidth * 0.1),
+                    //Settings
                     Obx(
                       () => Container(
                         width: screenWidth * 0.15,
