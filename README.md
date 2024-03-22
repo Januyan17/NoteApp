@@ -1,16 +1,15 @@
 # note_app
 
-A new Flutter project.
+Create Project Using CLI
+
+=> flutter create --org com.tv --project-name note_app note_app
 
 ## Getting Started
 
 First Install The Required package
 
-=> flutter pub get 
-
+=> flutter pub get
 
 Run the Application
 
-flutter run 
-
-
+flutter run
