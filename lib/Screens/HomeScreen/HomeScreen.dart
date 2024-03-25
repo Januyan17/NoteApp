@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:note_app/GetXControllers.dart/DropDownController.dart';
 import 'package:note_app/GetXControllers.dart/NoteController.dart';
-import 'package:note_app/GetXControllers.dart/ThemeController.dart';
 import 'package:note_app/Helpers/Colors.dart';
 import 'package:note_app/Helpers/ScreenLength.dart';
 import 'package:note_app/Screens/AddNote/AddNote.dart';
@@ -13,8 +13,8 @@ class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
 
   final TodoController todoController = Get.put(TodoController());
-  final ThemeController themeController = Get.put(ThemeController());
-
+  // final ThemeController themeController = Get.put(ThemeController());
+  final DropdownController dropdownController = Get.put(DropdownController());
   TextEditingController searchController = TextEditingController();
 
   @override
@@ -42,13 +42,17 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: screenHeight * 0.002),
-                Text(
-                  "Thomos Edition ,type.fit",
-                  style: TextStyle(
-                    fontFamily: "MontserratNormal",
-                    fontSize: 11,
-                  ),
-                ),
+                Obx(() => Text(
+                      "Thomos Edition ,type.fit",
+                      style: TextStyle(
+                        color: dropdownController.selectedValue.value == "Dark"
+                            ? Colors.white
+                            : Colors.black,
+                        fontFamily: "MontserratNormal",
+                        fontWeight: FontWeight.w600,
+                        fontSize: 11,
+                      ),
+                    )),
                 SizedBox(height: screenHeight * 0.02),
                 //Search Bar
                 Row(
@@ -80,14 +84,16 @@ class HomeScreen extends StatelessWidget {
                             ),
                             filled: true,
                             hintStyle: TextStyle(
-                                color: themeController.isDarkMode.value
+                                color: dropdownController.selectedValue.value ==
+                                        "Dark"
                                     ? HexColor("#D9D9D9")
-                                    : HexColor("#D4D4D4")),
+                                    : Colors.black),
                             hintText: "Search",
                             prefixIcon: Icon(Icons.search),
-                            fillColor: themeController.isDarkMode.value
-                                ? HexColor("#2d2d2d")
-                                : Colors.white,
+                            fillColor:
+                                dropdownController.selectedValue.value == "Dark"
+                                    ? HexColor("#2d2d2d")
+                                    : Colors.white,
                           ),
                         ),
                       ),
@@ -99,9 +105,10 @@ class HomeScreen extends StatelessWidget {
                         width: screenWidth * 0.15,
                         height: screenHeight * 0.15,
                         decoration: BoxDecoration(
-                          color: themeController.isDarkMode.value
-                              ? HexColor("#2d2d2d")
-                              : Colors.white,
+                          color:
+                              dropdownController.selectedValue.value == "Dark"
+                                  ? HexColor("#2d2d2d")
+                                  : Colors.white,
                           shape: BoxShape.circle,
                           border: Border.all(
                             color: HexColor("#D9D9D9"),
@@ -112,7 +119,13 @@ class HomeScreen extends StatelessWidget {
                           onPressed: () {
                             Get.to(SettingsScreen());
                           },
-                          icon: Icon(Icons.settings),
+                          icon: Icon(
+                            Icons.settings,
+                            color:
+                                dropdownController.selectedValue.value == "Dark"
+                                    ? HexColor("#D9D9D9")
+                                    : Colors.black,
+                          ),
                         ),
                       ),
                     )
@@ -147,7 +160,9 @@ class HomeScreen extends StatelessWidget {
                                 ),
                               ),
                               child: Obx(() => ListTile(
-                                    tileColor: themeController.isDarkMode.value
+                                    tileColor: dropdownController
+                                                .selectedValue.value ==
+                                            "Dark"
                                         ? HexColor("#2d2d2d")
                                         : Colors.white,
                                     title: Text(
@@ -161,7 +176,9 @@ class HomeScreen extends StatelessWidget {
                                       width: screenWidth * 0.11,
                                       height: screenHeight * 0.11,
                                       decoration: BoxDecoration(
-                                        color: themeController.isDarkMode.value
+                                        color: dropdownController
+                                                    .selectedValue.value ==
+                                                "Dark"
                                             ? HexColor("#2d2d2d")
                                             : Colors.white,
                                         shape: BoxShape.circle,

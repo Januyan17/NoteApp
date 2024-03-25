@@ -5,14 +5,13 @@ import 'package:get/get.dart';
 import 'package:note_app/GetXControllers.dart/DropDownController.dart';
 import 'package:note_app/Helpers/ScreenLength.dart';
 
-import '../../GetXControllers.dart/ThemeController.dart';
 import '../../Helpers/Colors.dart';
 
 class SettingsScreen extends StatelessWidget {
   SettingsScreen({Key? key}) : super(key: key);
 
   final DropdownController dropdownController = Get.put(DropdownController());
-  final ThemeController themeController = Get.put(ThemeController());
+  // final ThemeController themeController = Get.put(ThemeController());
 
   @override
   Widget build(BuildContext context) {
@@ -47,9 +46,10 @@ class SettingsScreen extends StatelessWidget {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10.0),
                             border: Border.all(
-                              color: themeController.isDarkMode.value
-                                  ? HexColor("#2d2d2d")
-                                  : HexColor("#D4D4D4"),
+                              color: dropdownController.selectedValue.value ==
+                                      "Dark"
+                                  ? HexColor("#D4D4D4")
+                                  : HexColor("#D9D9D9"),
                               width: 1.0,
                             ),
                           ),
@@ -58,21 +58,24 @@ class SettingsScreen extends StatelessWidget {
                               value: dropdownController.selectedValue.value,
                               onChanged: (String? newValue) {
                                 if (newValue != null) {
-                                  themeController.toggleTheme();
+                                  // themeController.toggleTheme();
                                   dropdownController.setSelectedValue(newValue);
                                 }
                               },
                               style: TextStyle(
-                                color: themeController.isDarkMode.value
+                                color: dropdownController.selectedValue.value ==
+                                        "Dark"
                                     ? Colors.white
                                     : Colors.black,
                                 fontSize: 16.0,
                               ),
                               icon: Icon(Icons.arrow_drop_down),
                               iconSize: 24.0,
-                              dropdownColor: themeController.isDarkMode.value
-                                  ? HexColor("#2d2d2d")
-                                  : Colors.white,
+                              dropdownColor:
+                                  dropdownController.selectedValue.value ==
+                                          "Dark"
+                                      ? HexColor("#2d2d2d")
+                                      : Colors.white,
                               elevation: 8,
                               items: <String>['Light', 'Dark', 'System']
                                   .map((String value) {
